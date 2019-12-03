@@ -29,18 +29,13 @@ public class MovieViewModel extends ViewModel {
                 moviesMutableLiveData.setValue(response.body().getResults());
 
                 Log.d(TAG, "onResponse: " + response.body().getResults());
-
             }
-
             @Override
             public void onFailure(Call<MovieResponse> call, Throwable t) {
 
             }
         });
-
-
     }
-
     public void getTopRatedMovies(){
 
         MovieClient.getINSTANCE().getTopRatedMovies().enqueue(new Callback<MovieResponse>() {

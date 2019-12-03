@@ -3,16 +3,24 @@ package com.example.movie.ui.main;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
+
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.movie.R;
-import com.example.movie.ui.main.FavouriteFragment;
-import com.example.movie.ui.main.HomeFragment;
-import com.example.movie.ui.main.TopRatedFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.wang.avi.AVLoadingIndicatorView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,46 +30,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final HomeFragment homeFragment = new HomeFragment();
-        final TopRatedFragment topRatedFragment = new TopRatedFragment();
-        final FavouriteFragment favouriteFragment = new FavouriteFragment();
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.navigation_top, R.id.navigation_home, R.id.navigation_FAv)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupWithNavController(navView, navController);
 
-        BottomNavigationView navigationView = findViewById(R.id.bottomNavigationView);
-        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-                int id = menuItem.getItemId();
-
-                switch (id){
-
-                    case R.id.home:
-                        initFragment(homeFragment);
-
-                        break;
-
-                    case R.id.top:
-                        initFragment(topRatedFragment);
-                        break;
-
-                    case R.id.fav:
-                        initFragment(favouriteFragment);
-                        break;
-
-                }
-
-                return true;
-            }
-        });
-
-        navigationView.setSelectedItemId(R.id.home);
 
     }
 
-    private void initFragment(Fragment fragment) {
 
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment,fragment);
-        fragmentTransaction.commit();
-    }
+
 }
