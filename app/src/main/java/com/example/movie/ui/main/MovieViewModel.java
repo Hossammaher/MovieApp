@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel;
 import com.example.movie.data.MovieClient;
 import com.example.movie.pojo.MovieModel;
 import com.example.movie.pojo.MovieResponse;
+import com.example.movie.pojo.TrailerModel;
+import com.example.movie.pojo.TrailerResponse;
 
 import java.util.List;
 
@@ -20,6 +22,9 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class MovieViewModel extends ViewModel {
     MutableLiveData<List<MovieModel>> moviesMutableLiveData = new MutableLiveData<>();
     MutableLiveData<String> movies = new MutableLiveData<>();
+
+    MutableLiveData<List<TrailerModel>> trailerMutableLiveData = new MutableLiveData<>();
+    MutableLiveData<String> trailers = new MutableLiveData<>();
 
     public void getMovie() {
         MovieClient.getINSTANCE().getMovie().enqueue(new Callback<MovieResponse>() {
@@ -36,6 +41,7 @@ public class MovieViewModel extends ViewModel {
             }
         });
     }
+
     public void getTopRatedMovies(){
 
         MovieClient.getINSTANCE().getTopRatedMovies().enqueue(new Callback<MovieResponse>() {
@@ -52,7 +58,27 @@ public class MovieViewModel extends ViewModel {
             }
         });
 
+    }
 
+
+    public void getMovieTrailer() {
+
+        MovieClient.getINSTANCE().getMovieTrailer().enqueue(new Callback<TrailerResponse>() {
+            @Override
+            public void onResponse(Call<TrailerResponse> call, Response<TrailerResponse> response) {
+
+                trailerMutableLiveData.setValue(response.body().getResults());
+
+
+            }
+
+            @Override
+            public void onFailure(Call<TrailerResponse> call, Throwable t) {
+
+            }
+        });
 
     }
+
+
 }

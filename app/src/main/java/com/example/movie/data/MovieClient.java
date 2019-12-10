@@ -2,6 +2,8 @@ package com.example.movie.data;
 
 
 import com.example.movie.pojo.MovieResponse;
+import com.example.movie.pojo.TrailerResponse;
+import com.example.movie.ui.main.DetailsActivity;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -38,7 +40,9 @@ public class MovieClient {
         return movieInterface.getTopRatedMovies(API_KEY);
     }
 
-
+    public Call<TrailerResponse> getMovieTrailer() {
+        return movieInterface.getMovieTrailer(DetailsActivity.movie_id, API_KEY);
+    }
 
 
 }

@@ -23,6 +23,8 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class TopRatedFragment extends Fragment {
 
@@ -47,7 +49,9 @@ public class TopRatedFragment extends Fragment {
             initview();
 
         } else {
-            Toast.makeText(getContext(), "No Internet Connection ", Toast.LENGTH_SHORT).show();
+            Toasty.custom(getContext(), "No Internet Connection",
+                    R.drawable.no_internet_24dp, R.color.colorPrimary,
+                    5000, true, true).show();
             loadingIndicatorView.hide();
         }
 

@@ -24,6 +24,8 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class HomeFragment extends Fragment {
 
@@ -49,7 +51,11 @@ public class HomeFragment extends Fragment {
             initView();
         } else {
 
-            Toast.makeText(getContext(), "No Internet Connection ", Toast.LENGTH_LONG).show();
+//
+            Toasty.custom(getContext(), "No Internet Connection",
+                    R.drawable.no_internet_24dp, R.color.colorPrimary,
+                    5000, true, true).show();
+
             loadingIndicatorView.hide();
         }
 
@@ -64,16 +70,16 @@ public class HomeFragment extends Fragment {
         loadingIndicatorView.show(); // progress bar
         movieViewModel.getMovie();  // show movies from moiveViewmodel
 
-        RecyclerView recyclerView = view.findViewById(R.id.MovieRecycler);
+        RecyclerView Movie_recyclerView = view.findViewById(R.id.MovieRecycler);
         final MoviesAdapter adapter = new MoviesAdapter(getContext());
         //set orientation
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
-            recyclerView.setAdapter(adapter);
+            Movie_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
+            Movie_recyclerView.setAdapter(adapter);
         } else {
-            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-            recyclerView.setAdapter(adapter);
+            Movie_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+            Movie_recyclerView.setAdapter(adapter);
         }
         movieViewModel.moviesMutableLiveData.observe(this, new Observer<List<MovieModel>>() {
             @Override
