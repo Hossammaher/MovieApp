@@ -92,19 +92,14 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private boolean haveNetwork() {
-        boolean have_WIFI = false;
-        boolean have_MobileData = false;
+
+    protected boolean haveNetwork() {
+
         ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo[] networkInfos = connectivityManager.getAllNetworkInfo();
-        for (NetworkInfo info : networkInfos) {
-            if (info.getTypeName().equalsIgnoreCase("WIFI"))
-                if (info.isConnected()) have_WIFI = true;
-            if (info.getTypeName().equalsIgnoreCase("MOBILE DATA"))
-                if (info.isConnected()) have_MobileData = true;
-        }
-        return have_WIFI || have_MobileData;
+
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
+
     }
-
-
 }
+
+

@@ -43,6 +43,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.PostViewHo
 
         Glide.with(context)
                 .load(poster)
+                .placeholder(R.drawable.loading)
                 .into(holder.MovieImg);
 
     }

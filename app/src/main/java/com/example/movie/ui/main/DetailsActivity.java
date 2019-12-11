@@ -121,6 +121,7 @@ public class DetailsActivity extends AppCompatActivity {
             String img = "https://image.tmdb.org/t/p/w500" + imgPath;
             Glide.with(this)
                     .load(img)
+                    .placeholder(R.drawable.popcorn)
                     .into(MovieImg);
 
             overView.setText(overview);
