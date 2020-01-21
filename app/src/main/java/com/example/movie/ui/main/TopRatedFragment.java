@@ -28,10 +28,9 @@ import es.dmoral.toasty.Toasty;
 
 public class TopRatedFragment extends Fragment {
 
-    View view;
+    private View view;
     private MovieInterface movieInterface;
     private AVLoadingIndicatorView loadingIndicatorView;
-    private MovieViewModel movieViewModel;
 
     public TopRatedFragment() {
         // Required empty public constructor
@@ -62,7 +61,7 @@ public class TopRatedFragment extends Fragment {
     private void initview() {
 
 
-        movieViewModel = ViewModelProviders.of(this).get(MovieViewModel.class);
+        MovieViewModel movieViewModel = ViewModelProviders.of(this).get(MovieViewModel.class);
         loadingIndicatorView.show();
         movieViewModel.getTopRatedMovies();
 
@@ -95,7 +94,7 @@ public class TopRatedFragment extends Fragment {
     }
 
 
-    protected boolean haveNetwork() {
+    private boolean haveNetwork() {
 
         ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 

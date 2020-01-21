@@ -19,10 +19,8 @@ import androidx.room.Room;
 
 import com.bumptech.glide.Glide;
 import com.example.movie.R;
-import com.example.movie.data.MovieInterface;
 import com.example.movie.database.MyDataBase;
 import com.example.movie.database.film;
-import com.example.movie.pojo.MovieModel;
 import com.example.movie.pojo.TrailerModel;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -41,12 +39,9 @@ public class DetailsActivity extends AppCompatActivity {
     String Movie_name, overview, movDate, imgPath;
     float rate;
     MovieViewModel movieViewModel;
-    View view;
     RecyclerView trailer_recycler;
-    MovieModel movieModel;
     boolean CheckIfINFavorite;
     CheckBox FavoriteButton;
-    private MovieInterface movieInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -201,9 +196,6 @@ public class DetailsActivity extends AppCompatActivity {
 
     public void DelFavourite() {
 
-        // Toasty.error(getApplicationContext(),"already exist").show();
-        film film = new film();
-//                  int id = getIntent().getIntExtra("movie_id", 0);
         myDataBase.myDeo().deleteFav(movie_id);
         Toasty.error(getApplicationContext(), "Removed from Favorite ").show();
 //        onBackPressed();

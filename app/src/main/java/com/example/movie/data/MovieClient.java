@@ -17,7 +17,7 @@ public class MovieClient {
     private static MovieClient INSTANCE;
 
 
-    public MovieClient() {
+    private MovieClient() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())

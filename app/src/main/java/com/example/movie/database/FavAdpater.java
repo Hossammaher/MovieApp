@@ -60,18 +60,14 @@ public class FavAdpater extends RecyclerView.Adapter<FavAdpater.myViewHolder> {
         notifyDataSetChanged();
     }
 
-
     public class myViewHolder extends RecyclerView.ViewHolder {
 
         TextView Movie_Name;
         ImageView MovieImg;
         RatingBar ratingBar;
 
-
         public myViewHolder(View view) {
             super(view);
-
-
             Movie_Name = view.findViewById(R.id.MovieName);
             MovieImg = view.findViewById(R.id.MovieImage);
             ratingBar = view.findViewById(R.id.ratingBar);
@@ -100,11 +96,8 @@ public class FavAdpater extends RecyclerView.Adapter<FavAdpater.myViewHolder> {
 //                        Toast.makeText(context, " " + clicked.getId(), Toast.LENGTH_SHORT).show();
 //                        Toast.makeText(context, " "+xx, Toast.LENGTH_SHORT).show();
                     }
-
                 }
             });
-
-
         }
     }
 }
